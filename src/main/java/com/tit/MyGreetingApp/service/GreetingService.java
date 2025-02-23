@@ -1,11 +1,27 @@
 package com.tit.MyGreetingApp.service;
 
+
+import com.tit.MyGreetingApp.entity.Greeting;
+import com.tit.MyGreetingApp.repository.GreetingRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 import java.util.HashMap;
 import java.util.Map;
 
 @Service
 public class GreetingService {
+
+    private final GreetingRepository greetingRepository;
+
+    @Autowired
+    public GreetingService(GreetingRepository greetingRepository) {
+        this.greetingRepository = greetingRepository;
+    }
+
+    public Greeting saveGreeting(String message) {
+        Greeting greeting = new Greeting(message);
+        return greetingRepository.save(greeting); // ✅ No more error!
+    }
 
     public Map<String, String> getGreeting(Map<String, String> request) {
         Map<String, String> response = new HashMap<>();
@@ -14,16 +30,12 @@ public class GreetingService {
 
         String greetingMessage;
         if (!firstName.isEmpty() && !lastName.isEmpty()) {
-            // Both firstName and lastName are provided
             greetingMessage = "Hello " + firstName + " " + lastName + "!";
         } else if (!firstName.isEmpty()) {
-            // Only firstName is provided
             greetingMessage = "Hello " + firstName + "!";
         } else if (!lastName.isEmpty()) {
-            // Only lastName is provided
             greetingMessage = "Hello " + lastName + "!";
         } else {
-            // Neither firstName nor lastName is provided
             greetingMessage = "Hello World!";
         }
 
