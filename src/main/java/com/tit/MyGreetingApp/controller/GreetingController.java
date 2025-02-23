@@ -1,6 +1,5 @@
 package com.tit.MyGreetingApp.controller;
 
-
 import com.tit.MyGreetingApp.entity.Greeting;
 import com.tit.MyGreetingApp.service.GreetingService;
 import org.springframework.web.bind.annotation.*;
@@ -39,6 +38,11 @@ public class GreetingController {
                 "lastName", lastName != null ? lastName : ""
         );
         return greetingService.getGreeting(request);
+    }
+
+    @GetMapping("/get/{id}")
+    public Greeting getGreetingById(@PathVariable Long id) {
+        return greetingService.findGreetingById(id);
     }
 
     @PostMapping("/post")
