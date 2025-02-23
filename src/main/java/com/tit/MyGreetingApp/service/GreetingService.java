@@ -26,7 +26,7 @@ public class GreetingService {
             // Neither firstName nor lastName is provided
             greetingMessage = "Hello World!";
         }
-
+        //put
         response.put("message", greetingMessage);
         return response;
     }
