@@ -44,7 +44,7 @@ public class GreetingController {
     public Map<String, String> updateGreeting(@RequestBody Map<String, String> request) {
         return greetingService.getGreeting(request);
     }
-
+    //Deletemappin
     @DeleteMapping("/delete")
     public Map<String, String> deleteGreeting() {
         Map<String, String> response = new HashMap<>();
