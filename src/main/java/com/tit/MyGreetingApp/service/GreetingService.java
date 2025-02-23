@@ -38,7 +38,7 @@ public class GreetingService {
         } else {
             greetingMessage = "Hello World!";
         }
-
+        //put
         response.put("message", greetingMessage);
         return response;
     }
